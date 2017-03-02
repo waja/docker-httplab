@@ -1,0 +1,12 @@
+sudo: required
+dist: trusty
+language: c
+
+services:
+  - docker
+
+install:
+  - make build
+
+script:
+  - test $(docker run --rm -it waja/httplab --help | head -1 | cut -d' ' -f3 | cut -d':' -f1 | xargs basename) = "httplab"
