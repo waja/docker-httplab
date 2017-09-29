@@ -3,7 +3,7 @@ FROM alpine:3.6
 # Dockerfile Maintainer
 MAINTAINER Jan Wagner "waja@cyconet.org"
 
-ENV HTTPLAB_VERSION v0.2.1
+ENV HTTPLAB_VERSION v0.3.0
 ENV UPSTREAM github.com/gchaincl/httplab
 
 ENV GOROOT /usr/lib/go
@@ -18,7 +18,7 @@ RUN apk --no-cache add ca-certificates && \
  echo "Starting installing httplab." && \
  go get -d $UPSTREAM && \
  cd $GOPATH/src/$UPSTREAM/ && git checkout $HTTPLAB_VERSION && \
- go install $UPSTREAM && \
+ go install $UPSTREAM/cmd/httplab && \
  apk del build-dependencies
 
 ENTRYPOINT ["/gopath/bin/httplab"]
