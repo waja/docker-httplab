@@ -1,4 +1,4 @@
-# Docker-HTPPLab
+# Docker-HTTPLab
 
 [![Build Status](https://travis-ci.org/Cyconet/docker-httplab.svg?branch=development)](https://travis-ci.org/Cyconet/docker-httplab)
 [![Docker Build Status](https://img.shields.io/docker/build/waja/httplab.svg)](https://hub.docker.com/r/waja/httplab/)
