@@ -3,7 +3,7 @@ FROM alpine:3.6
 # Dockerfile Maintainer
 MAINTAINER Jan Wagner "waja@cyconet.org"
 
-ENV HTTPLAB_VERSION v0.3.0
+ENV HTTPLAB_VERSION v0.4.0
 ENV UPSTREAM github.com/gchaincl/httplab
 
 ENV GOROOT /usr/lib/go
