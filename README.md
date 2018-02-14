@@ -1,5 +1,7 @@
 # Docker-HTTPLab
 
+[![](https://images.microbadger.com/badges/version/waja/httplab.svg)](https://hub.docker.com/r/waja/httplab/)
+[![](https://images.microbadger.com/badges/image/waja/httplab.svg)](https://hub.docker.com/r/waja/httplab/)
 [![Build Status](https://travis-ci.org/Cyconet/docker-httplab.svg?branch=development)](https://travis-ci.org/Cyconet/docker-httplab)
 [![Docker Build Status](https://img.shields.io/docker/build/waja/httplab.svg)](https://hub.docker.com/r/waja/httplab/)
 [![GitHub tag](https://img.shields.io/github/tag/Cyconet/docker-httplab.svg)](https://github.com/Cyconet/docker-httplab/tags)
