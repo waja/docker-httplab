@@ -3,6 +3,23 @@ FROM alpine:3.7
 # Dockerfile Maintainer
 MAINTAINER Jan Wagner "waja@cyconet.org"
 
+ARG "BUILD_DATE=unknown"
+ARG "BUILD_VERSION=unknown"
+ARG "VCS_URL=unknown"
+ARG "VCS_REF=unknown"
+ARG "VCS_BRANCH=unknown"
+
+# See http://label-schema.org/rc1/ and https://microbadger.com/labels
+LABEL org.label-schema.name="httplab - an interactive web server" \
+    org.label-schema.description="Let you inspect HTTP requests and forge responses on Alpine Linux based container" \
+    org.label-schema.vendor="Cyconet" \
+    org.label-schema.schema-version="1.0" \
+    org.label-schema.build-date=$BUILD_DATE \
+    org.label-schema.version=$BUILD_VERSION \
+    org.label-schema.vcs-url=$VCS_URL \
+    org.label-schema.vcs-ref=$VCS_REF \
+    org.label-schema.vcs-branch=$VCS_BRANCH
+
 ENV HTTPLAB_VERSION v0.4.0
 ENV UPSTREAM github.com/gchaincl/httplab
 
