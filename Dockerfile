@@ -20,7 +20,7 @@ LABEL org.label-schema.name="httplab - an interactive web server" \
     org.label-schema.vcs-ref="${VCS_REF:-unknown}" \
     org.label-schema.vcs-branch="${VCS_BRANCH:-unknown}"
 
-ENV HTTPLAB_VERSION v0.4.0
+ENV HTTPLAB_VERSION v0.4.1
 ENV UPSTREAM github.com/gchaincl/httplab
 
 ENV GOROOT /usr/lib/go
