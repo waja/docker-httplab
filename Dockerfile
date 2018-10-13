@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM golang:alpine as builder
 
 # Dockerfile Maintainer
 MAINTAINER Jan Wagner "waja@cyconet.org"
@@ -23,21 +23,25 @@ LABEL org.label-schema.name="httplab - an interactive web server" \
 ENV HTTPLAB_VERSION v0.4.1
 ENV UPSTREAM github.com/gchaincl/httplab
 
-ENV GOROOT /usr/lib/go
 ENV GOPATH /gopath
-ENV GOBIN /gopath/bin
-ENV PATH $PATH:$GOROOT/bin:$GOPATH/bin
+ENV GOBIN /go/bin
 
 RUN apk --no-cache update && apk --no-cache upgrade && \
- # Install dependencies for building httpdiff 
- apk --no-cache add ca-certificates && \
- apk --no-cache add --virtual build-dependencies curl git go musl-dev && \
- # Install bombardier client
- echo "Starting installing httplab." && \
+ # Install dependencies for building httplab
+ apk --no-cache add ca-certificates git && \
+ # Build httplab client
+ echo "Fetching httplab source" && \
  go get -d $UPSTREAM && \
  cd $GOPATH/src/$UPSTREAM/ && git checkout $HTTPLAB_VERSION && \
- go install $UPSTREAM/cmd/httplab && \
- apk del build-dependencies
+ echo "Getting dependancies" && \
+ go get -d -v && \
+ echo "Building httplab" && \
+ CGO_ENABLED=0 go install -v -ldflags '-extldflags "-static"' $UPSTREAM/cmd/httplab
 
-ENTRYPOINT ["/gopath/bin/httplab"]
+# start from scratch
+FROM scratch
+# Copy our static executable
+COPY --from=builder /go/bin/httplab /go/bin/httplab
+
+ENTRYPOINT ["/go/bin/httplab"]
 #CMD [""]
