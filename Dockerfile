@@ -23,13 +23,15 @@ ENV UPSTREAM github.com/gchaincl/httplab
 ENV GOPATH /gopath
 ENV GOBIN /go/bin
 
+# hadolint ignore=DL3017,DL3018
 RUN apk --no-cache update && apk --no-cache upgrade && \
  # Install dependencies for building httplab
  apk --no-cache add ca-certificates git && \
  # Build httplab client
  echo "Fetching httplab source" && \
- go get -d $UPSTREAM && \
- cd $GOPATH/src/$UPSTREAM/ && git checkout $HTTPLAB_VERSION && \
+ go get -d $UPSTREAM
+WORKDIR $GOPATH/src/$UPSTREAM/
+RUN git checkout $HTTPLAB_VERSION && \
  echo "Getting dependancies" && \
  go get -d -v && \
  echo "Building httplab" && \
